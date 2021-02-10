@@ -20,7 +20,7 @@ def index():
         energeticos = dados.get('energeticos')
         agua = dados.get('agua')
 
-    if not isinstance (sucos, str) or not isinstance (refrigerantes, str) or not isinstance (cervejas, str) or not isinstance(drinks, str) or not isinstance(agua, str)
+    if not isinstance (sucos, str) or not isinstance (refrigerantes, str) or not isinstance (cervejas, str) or not isinstance(drinks, str) or not isinstance(agua, str):
         return{'ERRO': 'selecione uma opção'}, 400
 
    

@@ -5,9 +5,9 @@ from ..association import association_table
 class Cardapio(db.Model):
     __tablename__ = 'cardapio'
     id = db.Column(db.Integer, primary_key=True)
-    bebidas = db.Column(db.string(100), nullable=False)
-    snacks = db.Column(db.string(100), nullable=False)
-    doces = db.Column(db.string(100), nullable=False)
+    bebidas = db.Column(db.String(100), nullable=False)
+    snacks = db.Column(db.String(100), nullable=False)
+    doces = db.Column(db.String(100), nullable=False)
 
     def json(self):
         return{
