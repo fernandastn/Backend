@@ -1,5 +1,5 @@
 from flask import request, Blueprint, jsonify
-from app.cardapio.model import Bebidas
+from .model import Bebidas
 from app.extensions import db
 
 #Bebidas

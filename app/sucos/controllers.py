@@ -1,9 +1,9 @@
 from flask import request, Blueprint, jsonify
-from app.cardapio.model import Sucos
+from .model import Sucos
 from app.extensions import db
 
 sucos_api = Blueprint("sucos_api", __name__)
-@sucos_api.route = ('/Sucos', methods=['GET', 'POST'])
+@sucos_api.route = ('/sucos', methods=['GET', 'POST'])
 def index():
     if request.method == 'GET':
         sucos = Sucos.query.all()
