@@ -1,15 +1,18 @@
-from flask import request, Blueprint, jsonify
-from app.cardapio.model import Cardapio
-from app.extensions import db
+from flask import request, jsonify, render_template
+from flask.views import MethodView
+import bcrypt
+from flask_mail import Message
+from flask_jwt_extended import create_acess_token, jwt_required, get_jwt_identify
 
-cardapio_api = Blueprint("cardapio_api", __name__)
-@cardapio_api.route('/Cardapio', methods=['GET', 'POST'])
-def index():
-    if request.method == 'GET':
+from app.cardapio.model import Cardapio
+
+
+class CardapioDetails(MethodView):
+    def get(self):
         cardapio = Cardapio.query.all()
         return jsonify([cardapio.json() for cardapio in cardapio]), 200
 
-    if request.method == 'POST':
+    def post(self):
         dados = request.json
 
         bebidas = dados.get('bebidas')
@@ -28,14 +31,16 @@ def index():
 
     #Caso o cliente queira fazer alterações no cardapio
 
-@cardapio_api.route('/Cardapio/<int:id', methods = ['GET', 'PUT', 'POST', 'DELETE'])
-def pagina_cardapio(id):
-    cardapio = Cardapio.query.get_or_404(id)
+# @cardapio_api.route('/Cardapio/<int:id', methods = ['GET', 'PUT', 'POST', 'DELETE'])
 
-    if request.method == 'GET':
+class Pagina_Cardapio(MethodView):
+
+    def get(self, id):
+        cardapio = Cardapio.query.get_or_404(id)
         return cardapio.json(), 200
 
-    if request. method == 'PATCH':
+    def patch(self, id):
+        cardapio = Cardapio.query_or_404(id)
         dados = request.json
 
         bebidas = dados.get('bebidas', cardapio.bebidas)
@@ -47,7 +52,11 @@ def pagina_cardapio(id):
             
         db.session.commit()
 
-        return cardapio.json(), 200
+        # return cardapio.json(), 200
+
+
+        
+
         
 
 

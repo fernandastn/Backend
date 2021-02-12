@@ -2,14 +2,16 @@ from flask import request, Blueprint, jsonify
 from .model import Sucos
 from app.extensions import db
 
-sucos_api = Blueprint("sucos_api", __name__)
-@sucos_api.route = ('/sucos', methods=['GET', 'POST'])
-def index():
-    if request.method == 'GET':
+
+# sucos_api = Blueprint("sucos_api", __name__)
+# @sucos_api.route = ('/sucos', methods=['GET', 'POST'])
+
+class SucosDetails(Method)
+    def get(self):
         sucos = Sucos.query.all()
         return jsonify([sucos.json()for sucos in sucos]), 200
 
-    if request.method == 'POST':
+    def post(self):
         dados = request.json
 
         detox = dados.get('detox')
@@ -31,14 +33,15 @@ def index():
 
 #Caso o cliente queira adicionar/deletar opções de sucos
 
-@sucos_api.route('/sucos/<int:id', methods = ['GET', 'PUT', 'POST', 'DELETE'])
-def pagina_sucos(id):
-    cardapio = Cardapio.query.get_or_404(id)
+# @sucos_api.route('/sucos/<int:id', methods = ['GET', 'PUT', 'POST', 'DELETE'])
 
-    if request.method == 'GET':
+class Pagina_Sucos(id):
+
+    def get(self, id):
+        sucos = Sucos.query.get_or_404(id)
         return sucos.json(), 200
 
-    if request. method == 'PATCH':
+    def patch(self, id):
         dados = request.json
 
         

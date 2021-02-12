@@ -20,7 +20,7 @@ class Sucos(db.Model):
         "laranja_com_cenoura": self.laranja_com_cenoura,
         "manga": self.manga,
         "proteíco": self.proteico
-        }
+         }
 
 
     #relacionando tabelas 
